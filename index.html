@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon-16x16.png">
+    <link rel="manifest" href="./images/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;1,400&family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/prism.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/prism.js" defer></script>
+
+    <meta name="description"
+        content="A website dedicated to breaking the stigma of growing up in Cleveland. We really aren't that bad.">
+    <title>Home - Cleveland is no longer the mistake on the lake</title>
+</head>
+
+<body>
+    <!--
+    <div class="hero">
+        <picture>
+            <source media="(min-width: 801px)" srcset="images/hero-cleveland-2000px.jpg">
+            <source media="(min-width: 401px)" srcset="images/hero-cleveland-800px.jpg">
+            <source media="(max-width: 400px)" srcset="images/hero-cleveland-400px.jpg">
+            <img src="images/hero-cleveland-800px.jpg" alt="cleveland city skyline">
+        </picture>
+        <div class="text-wrapper">
+            <h1>Cleveland</h1>
+            <p>No longer the mistake on the lake</p>
+        </div>
+    </div> -->
+
+    <div class="hero">
+        <div class="video-background">
+            <div class="video-foreground">
+                <iframe
+                    src="https://www.youtube.com/embed/9s1UpG1qo9M?controls=0&start=7&autoplay=1&mute=1&modestbranding=1&playlist=9s1UpG1qo9M&loop=1"
+                    allow="autoplay; loop">
+                </iframe>
+            </div>
+        </div>
+        <div class="text-wrapper">
+            <h1>Cleveland</h1>
+            <p>No longer the mistake on the lake</p>
+        </div>
+    </div>
+
+
+    <main>
+
+        <article>
+            <h2>YouTube video hero</h2>
+            <p><a href="https://codepen.io/lsburton/pen/wvpPxQV?editors=0100" target="_blank">sample CodePen</a></p>
+            <h3>HTML setup</h3>
+            <p>In place of your picture element add two nested div elements: <code>.video-background</code> and
+                <code>.video-foreground</code>. You can keep your text overlay.
+                element.
+            </p>
+            <!-- @formatter:off -->
+            <pre><code class="language-html">&lt;div class="hero"&gt;
+
+    &lt;div class="video-background"&gt;
+        &lt;div class="video-foreground"&gt;
+            &lt;!-- PASTE YOUR YOUTUBE EMBED CODE HERE --&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="text-wrapper"&gt;
+        &lt;h1&gt;Cleveland&lt;/h1&gt;
+        &lt;p&gt;No longer the mistake on the lake&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+            <!-- @formatter:on -->
+            <p>Find the video you would like to use on YouTube (be aware that some videos are region-restricted). </p>
+            <ul>
+                <li>Click the Share button below the video</li>
+                <li>Choose Embed</li>
+                <li>Optionally select a start time; this can fast forward over opening credits</li>
+                <li>Uncheck "Show player controls"</li>
+                <li>Click copy</li>
+                <li>Paste the embed code inside the <code>.video-foreground</code> div </li>
+            </ul>
+
+            <p>We will need to remove and add some information to the embed code. A typical embed code (with no controls
+                selected, and start at 7s will look something like this:</p>
+            <pre><code class="language-html">&lt;iframe width="560" height="315"
+    src="https://www.youtube.com/embed/9s1UpG1qo9M?controls=0&amp;start=7"
+    title="YouTube video player" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+
+            <p>Remove the following:</p>
+            <ul>
+                <li><code>width</code> and <code>height</code> attributes. We will set them in the CSS</li>
+                <li><code>title</code> attribute - not needed and it would appear as a tool tip</li>
+                <li><code>frameborder</code> is deprecated and will give a validation error</li>
+                <li>most of the <code>allow</code> attribute properties are not needed. Remove all but
+                    <code>autoplay</code>
+                </li>
+                <li><code>allowfullscreen</code></li>
+            </ul>
+            <p>Your embed code should now look like this</p>
+            <pre><code class="language-html">&lt;iframe
+    src="https://www.youtube.com/embed/9s1UpG1qo9M?controls=0&amp;start=7"
+    allow="autoplay"&gt;
+&lt;/iframe&gt;</code></pre>
+
+            <p>Next, we want to enable autoplay (which is starting to be disabled by default on mobile phones) and mute
+                the video. YouTube also has a "modestbranding" feature that is supposed to remove most branding. We will
+                add all of these as parameters on the video URL. To add parameters, add a <code>?</code> after the URL,
+                then add the parameters separated by <code>&amp;</code>. Here's the URL with the parameters</p>
+            <pre><code class="language-html">&lt;iframe
+    src="https://www.youtube.com/embed/9s1UpG1qo9M?controls=0&amp;start=7&amp;autoplay=1&amp;mute=1&amp;modestbranding=1"
+    allow="autoplay"&gt;
+&lt;/iframe&gt;</code></pre>
+            <p>If you want the video to loop, you need a playlist. To have just the one video loop, use the video ID as
+                the playlist value (the video ID is right after <code>embed/</code> in the URL). Add the playlist and
+                <code>loop=1</code> to the URL. Also add look to the <code>allow</code> attribute
+            </p>
+            <pre><code class="language-html">&lt;iframe
+    src="https://www.youtube.com/embed/9s1UpG1qo9M?controls=0&amp;start=7&amp;autoplay=1&amp;mute=1&amp;modestbranding=1&ampplaylist=9s1UpG1qo9M&amp;loop=1"
+    allow="autoplay; loop"&gt;
+&lt;/iframe&gt;</code></pre>
+
+            <h3>CSS styling</h3>
+            <p>Next, we need CSS to style the video. First, hide any overflow on your hero element. You can give it a
+                height, but if you are using the reset include in the assignment files, remove the declaration that sets
+                the html and body to height: 100%. </p>
+
+            <pre><code class="language-css">.hero {
+    position: relative;
+    overflow: hidden;
+    height: 90vh;
+}
+</code></pre>
+
+            <p>Here's all the CSS needed for the two .video divs:</p>
+            <pre><code class="language-css">.video-background {
+    background: #000;
+    position: absolute;
+    inset: 0;
+    z-index: -99;
+  }
+
+  .video-foreground,
+  .video-background iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  @media (min-aspect-ratio: 16/9) {
+    .video-foreground {
+      height: 300%;
+      top: -100%;
+    }
+  }
+  @media (max-aspect-ratio: 16/9) {
+    .video-foreground {
+      width: 300%;
+      left: -100%;
+    }
+  }</code></pre>
+
+            <p>The double divs act emulate <code>background-fit: cover</code> and the media queries size the video based
+                on aspect ratio. </p>
+        </article>
+
+        <p><em>Layering technique modified from <a
+                    href="https://thenewcode.com/500/Use-YouTube-Videos-as-Fullscreen-Web-Page-Backgrounds">The New
+                    Code</a></em></p>
+
+    </main>
+</body>
+
+</html>
